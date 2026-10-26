@@ -1,0 +1,85 @@
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  background: #f4f6f9;
+  color: #222;
+}
+
+.container {
+  max-width: 900px;
+  margin: 30px auto;
+  padding: 16px;
+}
+
+.panel {
+  background: white;
+  padding: 22px;
+  margin: 20px 0;
+  border-radius: 10px;
+  box-shadow: 0 2px 8px #00000012;
+}
+
+form {
+  display: grid;
+  gap: 10px;
+}
+
+input,
+textarea,
+select,
+button {
+  width: 100%;
+  padding: 10px;
+  font: inherit;
+}
+
+textarea {
+  min-height: 100px;
+  resize: vertical;
+}
+
+button {
+  border: 0;
+  border-radius: 5px;
+  background: #2459a9;
+  color: white;
+  cursor: pointer;
+}
+
+button:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.list-heading {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 16px;
+}
+
+.list-heading button {
+  width: auto;
+}
+
+.ticket {
+  padding: 14px;
+  margin-top: 12px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  overflow-wrap: anywhere;
+}
+
+.success {
+  color: #18753c;
+}
+
+.error {
+  color: #b42318;
+  white-space: pre-wrap;
+}
