@@ -12,7 +12,8 @@ const emptyForm = {
   assignedTo: "",
 };
 
-function App() {
+function App() 
+{
   const [tickets, setTickets] = useState([]);
   const [form, setForm] = useState(emptyForm);
   const [loading, setLoading] = useState(true);

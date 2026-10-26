@@ -10,23 +10,77 @@ body {
   color: #222;
 }
 
+#root {
+  width: 100%;
+  min-height: 100vh;
+}
+
 .container {
-  max-width: 900px;
-  margin: 30px auto;
-  padding: 16px;
+  width: 100%;
+  max-width: 1500px;
+  margin: 0 auto;
+  padding: 24px;
 }
 
+/* Main heading */
+h1 {
+  margin: 0 0 24px;
+  font-size: 28px;
+}
+
+/* Horizontal dashboard layout */
+.container {
+  display: grid;
+  grid-template-columns: minmax(320px, 0.8fr) minmax(0, 1.6fr);
+  grid-template-areas:
+    "heading heading"
+    "form messages"
+    "form tickets";
+  align-items: start;
+  gap: 20px;
+}
+
+.container > h1 {
+  grid-area: heading;
+  color: var(--text-h);
+}
+
+.container > .panel:first-of-type {
+  grid-area: form;
+  margin: 0;
+}
+
+.container > .panel:last-of-type {
+  margin: 0;
+  min-width: 0;
+}
+
+/* Panels */
 .panel {
-  background: white;
+  min-width: 0;
+  background: #fff;
   padding: 22px;
-  margin: 20px 0;
-  border-radius: 10px;
-  box-shadow: 0 2px 8px #00000012;
+  border-radius: 12px;
+  box-shadow: 0 2px 10px #0000000d;
 }
 
+.panel h2 {
+  margin-top: 0;
+  font-size: 20px;
+  color:  #6fc2f5;
+}
+
+/* Form fields */
 form {
   display: grid;
+  grid-template-columns: minmax(0, 1fr);
   gap: 10px;
+}
+
+label {
+  font-size: 14px;
+  font-weight: 600;
+  margin-top: 4px;
 }
 
 input,
@@ -34,21 +88,64 @@ textarea,
 select,
 button {
   width: 100%;
-  padding: 10px;
+  min-width: 0;
+  padding: 11px;
   font: inherit;
+  border-radius: 6px;
+}
+
+/* Textbox and dropdown text visibility */
+input,
+textarea,
+select {
+  color: #222222;
+  background-color: #ffffff;
+  border: 1px solid #cbd5e1;
+}
+
+/* Placeholder text */
+input::placeholder,
+textarea::placeholder {
+  color: #777777;
+  opacity: 1;
+}
+
+/* Text when you click inside a textbox */
+input:focus,
+textarea:focus,
+select:focus {
+  color: #222222;
+  background-color: #ffffff;
+  outline: 2px solid #b9d0fa;
+  border-color: #2459a9;
+}
+
+/* Dropdown options */
+select option {
+  color: #222222;
+  background-color: #ffffff;
 }
 
 textarea {
-  min-height: 100px;
+  min-height: 85px;
   resize: vertical;
 }
 
 button {
   border: 0;
-  border-radius: 5px;
   background: #2459a9;
-  color: white;
+  color: #fff;
   cursor: pointer;
+  font-weight: 600;
+  transition: background 0.2s ease;
+}
+
+form button {
+  margin-top: 12px;
+}
+
+button:hover:not(:disabled) {
+  background: #194681;
 }
 
 button:disabled {
@@ -56,30 +153,174 @@ button:disabled {
   cursor: not-allowed;
 }
 
+/* Ticket list heading */
 .list-heading {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  gap: 16px;
+  gap: 12px;
+  margin-bottom: 16px;
+}
+
+.list-heading h2 {
+  margin: 0;
+  color:  #6fc2f5;
 }
 
 .list-heading button {
   width: auto;
+  flex-shrink: 0;
+}
+
+/* Tickets in a responsive grid */
+.ticket-list {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 14px;
 }
 
 .ticket {
-  padding: 14px;
-  margin-top: 12px;
-  border: 1px solid #ddd;
-  border-radius: 8px;
+  min-width: 0;
+  padding: 16px;
+  margin: 0;
+  border: 1px solid #e0e5ed;
+  border-radius: 9px;
+  background: #fff;
+  overflow-wrap: anywhere;
+}
+
+.ticket h3 {
+  margin-top: 0;
+  font-size: 16px;
+}
+
+.ticket p {
+  font-size: 14px;
+  line-height: 1.5;
+}
+
+.success,
+.error {
+  margin: 0;
+  padding: 12px;
+  border-radius: 6px;
   overflow-wrap: anywhere;
 }
 
 .success {
   color: #18753c;
+  background: #e8f7ed;
 }
 
 .error {
   color: #b42318;
+  background: #fef0ef;
   white-space: pre-wrap;
+}
+
+/* Place messages across the right column */
+.container > .success,
+.container > .error {
+  grid-column: 2;
+}
+
+
+/* Modern combo box design */
+select {
+  width: 100%;
+  min-width: 0;
+  padding: 12px 40px 12px 14px;
+
+  font-family: Arial, sans-serif;
+  font-size: 14px;
+  font-weight: 500;
+  color: #263449;
+
+  background-color: #f8faff;
+
+  border: 1px solid #cbd5e1;
+  border-radius: 8px;
+
+  /* Custom dropdown arrow */
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='%232459a9' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='m6 9 6 6 6-6'/%3E%3C/svg%3E");
+
+  background-repeat: no-repeat;
+  background-position: right 14px center;
+  background-size: 16px;
+
+  cursor: pointer;
+  transition: border-color 0.2s, box-shadow 0.2s, background-color 0.2s;
+}
+
+/* Hover effect */
+select:hover {
+  border-color: #2459a9;
+  background-color: #ffffff;
+}
+
+/* Focus effect */
+select:focus {
+  outline: none;
+  border-color: #2459a9;
+  box-shadow: 0 0 0 3px #2459a926;
+  background-color: #ffffff;
+}
+
+/* Dropdown options */
+select option {
+  padding: 10px;
+  background-color: #ffffff;
+  color: #263449;
+}
+
+/* Disabled dropdown */
+select:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+/* Tablet and mobile: prevent horizontal overflow */
+@media (max-width: 850px) {
+  .container {
+    grid-template-columns: minmax(0, 1fr);
+    grid-template-areas:
+      "heading"
+      "messages"
+      "form"
+      "tickets";
+    padding: 16px;
+  }
+
+  .container > .success,
+  .container > .error {
+    grid-column: 1;
+  }
+
+  .ticket-list {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}
+
+@media (max-width: 480px) {
+  .container {
+    padding: 10px;
+    gap: 14px;
+  }
+
+  .panel {
+    padding: 15px;
+  }
+
+  h1 {
+    font-size: 23px;
+    
+  }
+
+  .list-heading {
+    flex-wrap: wrap;
+  }
 }
